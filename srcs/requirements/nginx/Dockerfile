@@ -1,3 +1,3 @@
 FROM nginx
 
-COPY . /html/
+COPY . /usr/share/nginx/html
