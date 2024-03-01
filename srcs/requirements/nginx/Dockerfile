@@ -1,3 +1,1 @@
-FROM nginx
-
-COPY . /usr/share/nginx/html
+FROM debian:bullseye
