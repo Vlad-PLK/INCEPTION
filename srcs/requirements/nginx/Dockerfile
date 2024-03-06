@@ -8,7 +8,7 @@ RUN apt install vim -y
 
 RUN mkdir -p /etc/nginx/ssl
 
-RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PACA/L=NICE/O=42/OU=42/CN=vpolojoe.42.fr/UID=vpolojie"
+RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PACA/L=NICE/O=42/OU=42/CN=vpolojie.42.fr/UID=vpolojie"
 
 RUN mkdir -p /var/run/nginx
 
