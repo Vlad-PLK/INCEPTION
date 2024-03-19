@@ -9,4 +9,4 @@ RUN mkdir -p /var/run/mysqld \
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf/50-server.cnf
 COPY tools/mariadb.sh /
 
-##CMD sh /mariadb.sh
+CMD sh /mariadb.sh
