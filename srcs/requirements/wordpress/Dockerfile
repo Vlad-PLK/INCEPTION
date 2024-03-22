@@ -7,4 +7,4 @@ RUN apt install curl -y
 
 COPY wp_script.sh /
 
-RUN sh wp_script.sh
+#RUN sh wp_script.sh
