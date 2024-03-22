@@ -8,5 +8,3 @@ RUN apt install curl -y
 COPY wp_script.sh /
 
 RUN sh wp_script.sh
-
-CMD ["watch", "-n1", "echo hello-world"]
