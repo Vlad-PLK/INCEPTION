@@ -1,0 +1,56 @@
+version: '3'
+
+networks:
+  inception:
+    driver: bridge
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/.
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    networks:
+      - inception
+    restart: always
+  
+  mariadb:
+    container_name: mariadb
+    build: 
+      context: ./requirements/mariadb/.
+      args:
+        - MYSQL_DB_NAME=${MYSQL_DB_NAME}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_ROOT_PSW=${MYSQL_ROOT_PSW}
+    networks:
+      - inception
+    expose:
+      - "3306"
+    env_file:
+      - .env
+    restart: always
+  
+  wordpress:
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    build: 
+      context: ./requirements/wordpress/.
+      args:
+        - DOMAIN_NAME=${DOMAIN_NAME}
+        - WP_ADMIN=${WP_ADMIN}
+        - WP_ADMIN_PSW=${WP_ADMIN_PSW}
+        - WP_USER=${WP_USER}
+        - WP_USER_PSW=${WP_USER_PSW}
+        - MYSQL_DB_NAME=${MYSQL_DB_NAME}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_ROOT_PSW=${MYSQL_ROOT_PSW}
+    networks:
+      - inception
+    env_file:
+      - .env
+    restart: always
+    expose:
+      - "9000"

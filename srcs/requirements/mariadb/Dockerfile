@@ -1,5 +1,9 @@
 FROM debian:bullseye
 
+ARG MYSQL_DB_NAME
+ARG MYSQL_USER
+ARG MYSQL_ROOT_PSW
+
 RUN apt update -y && apt upgrade -y
 RUN apt install mariadb-server -y
 RUN mkdir -p /var/run/mysqld \

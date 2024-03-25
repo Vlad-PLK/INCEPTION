@@ -15,10 +15,12 @@ wp core download --allow-root
 
 mv wp-config-sample.php wp-config.php
 
-sed -i 's/database_name_here/$MYSQL_DB_NAME/1' wp-config.php
-sed -i 's/username_here/$MYSQL_USER/1' wp-config.php
-sed -i 's/password_here/$MYSQL_PSW/1' wp-config.php
-sed -i 's/localhost/mariadb/1' wp-config.php
+sed -i "s/database_name_here/$MYSQL_DB_NAME/1" wp-config.php
+sed -i "s/username_here/$MYSQL_USER/1" wp-config.php
+sed -i "s/password_here/$MYSQL_PSW/1" wp-config.php
+sed -i "s/localhost/mariadb/1" wp-config.php
 
 wp core install --url=$DOMAIN_NAME --title=42 --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PSW --admin_email=$WP_ADMIN.42.fr --skip-email --allow-root
 wp user create $WP_USER --user_pass=$WP_USER_PSW --role=author --allow-root
+
+service php7.4-fpm start
