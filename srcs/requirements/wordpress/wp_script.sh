@@ -21,3 +21,4 @@ sed -i 's/password_here/$MYSQL_PSW/1' wp-config.php
 sed -i 's/localhost/mariadb/1' wp-config.php
 
 wp core config --url=https://vpolojie.42.fr --title=42 --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PSW --admin_email=$WP_ADMIN.42.fr --skip-email --allow-root
+wp user create $WP_USER --user_pass=$WP_USER_PSW --role=contributor
