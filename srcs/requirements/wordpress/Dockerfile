@@ -18,3 +18,5 @@ COPY /conf/www.conf /etc/php/7.4/fpm/pool.d/
 COPY wp_script.sh /
 
 RUN sh wp_script.sh
+
+CMD ["/usr/sbin/php-fpm7.4", "-F"]

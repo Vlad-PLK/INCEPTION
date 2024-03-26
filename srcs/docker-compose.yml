@@ -1,5 +1,19 @@
 version: '3'
 
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/vpolojie/data/mariadb'
+  wordpress:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/vpolojie/data/wordpress'
+
 networks:
   inception:
     driver: bridge
@@ -31,6 +45,8 @@ services:
     env_file:
       - .env
     restart: always
+    volumes:
+      - mariadb:/var/lib/mysql
   
   wordpress:
     container_name: wordpress
@@ -54,3 +70,5 @@ services:
     restart: always
     expose:
       - "9000"
+    volumes:
+      - wordpress:/var/www/html/wordpress

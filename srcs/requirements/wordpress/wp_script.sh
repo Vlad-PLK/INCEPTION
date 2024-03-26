@@ -24,5 +24,3 @@ wp core install --url=$DOMAIN_NAME --title=42 --admin_user=$WP_ADMIN --admin_pas
 wp user create $WP_USER --user_pass=$WP_USER_PSW --role=author --allow-root
 
 mkdir /run/php
-
-/usr/sbin/php-fpm7.4 -F
