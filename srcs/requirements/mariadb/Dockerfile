@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:buster
 
 ARG MYSQL_DB_NAME
 ARG MYSQL_USER
@@ -11,6 +11,7 @@ RUN mkdir -p /var/run/mysqld \
 && chmod 777 /var/run/mysqld
 
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY tools/mariadb.sh /
+COPY tools/mariadb_c.sh /
 
-CMD sh /mariadb.sh
+#RUN sh /mariadb_c.sh
+#CMD [mysqld_safe]
