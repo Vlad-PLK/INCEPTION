@@ -29,6 +29,8 @@ services:
     networks:
       - inception
     restart: always
+    volumes: 
+      - wordpress:/var/www/html/wordpress
   
   mariadb:
     container_name: mariadb
