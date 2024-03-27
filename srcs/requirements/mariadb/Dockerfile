@@ -1,8 +1,8 @@
-FROM debian:buster
+FROM debian:bullseye
 
-ARG MYSQL_DB_NAME
-ARG MYSQL_USER
-ARG MYSQL_ROOT_PSW
+#ARG MYSQL_DB_NAME
+#ARG MYSQL_USER
+#ARG MYSQL_ROOT_PSW
 
 RUN apt update -y && apt upgrade -y
 RUN apt install mariadb-server -y
@@ -11,7 +11,8 @@ RUN mkdir -p /var/run/mysqld \
 && chmod 777 /var/run/mysqld
 
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY tools/mariadb_c.sh /
+COPY tools/mariadb.sh /
 
-#RUN sh /mariadb_c.sh
-#CMD [mysqld_safe]
+RUN chmod +x mariadb.sh
+RUN ./mariadb_c.sh
+CMD ["mysqld_safe"]

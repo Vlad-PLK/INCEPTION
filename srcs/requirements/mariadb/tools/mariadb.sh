@@ -1,15 +1,16 @@
 #!/bin/sh
 
-#service mariadb start
+service mariadb start
 
-mariadbd & 
-sleep 3
-echo "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DB_NAME}\`;" | mariadb
-echo "CREATE USER IF NOT EXISTS \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PSW}';" | mariadb
-echo "GRANT ALL PRIVILEGES ON \`${MYSQL_DB_NAME}\`.* TO \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PSW}';" | mariadb
-echo "ALTER USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PSW}';" | mariadb
-echo "FLUSH PRIVILEGES;" | mariadb
+touch db.sql
+cat << EOF > db.sql
+CREATE DATABASE IF NOT EXISTS \`${MYSQL_DB_NAME}\`;
+CREATE USER IF NOT EXISTS \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PSW}';
+GRANT ALL PRIVILEGES ON \`${MYSQL_DB_NAME}\`.* TO \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PSW}';
+ALTER USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PSW}';
+FLUSH PRIVILEGES;
+EOF
 
-kill %1
+mariadb < db.sql
 
-#mysqladmin -u root -p$MYSQL_ROOT_PSW shutdown
+mysqladmin -u root -p'vldplk' shutdown

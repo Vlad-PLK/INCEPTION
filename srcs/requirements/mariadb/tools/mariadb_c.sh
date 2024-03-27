@@ -2,10 +2,8 @@
 
 service mariadb start
 
-#mariadbd & 
-#sleep 3
-cat << EOF > mb.sql
-FLUSH PRIVILEGES;
+touch db.sql
+cat << EOF > db.sql
 CREATE DATABASE IF NOT EXISTS mdb;
 CREATE USER IF NOT EXISTS plk@'localhost' IDENTIFIED BY 'vld';
 GRANT ALL PRIVILEGES ON mdb.* TO plk@'%' IDENTIFIED BY 'vld';
@@ -13,9 +11,6 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'vldplk';
 FLUSH PRIVILEGES;
 EOF
 
-mariadb < mb.sql
-#kill %1
+mariadb < db.sql
 
-service mariadb stop
-
-#mysqladmin -u root -p$MYSQL_ROOT_PSW shutdown
+mysqladmin -u root -p'vldplk' shutdown
