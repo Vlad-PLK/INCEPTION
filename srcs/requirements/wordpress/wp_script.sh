@@ -16,7 +16,7 @@ wp core download --allow-root
 sed -i "s/username_here/$MYSQL_USER/g" wp-config-sample.php
 sed -i "s/password_here/$MYSQL_PSW/g" wp-config-sample.php
 sed -i "s/localhost/mariadb/g" wp-config-sample.php
-sed -i "s/database_name_here/$MYSQL_DB_NAME/g" wp-config-sample.php
+sed -i "s/database_name_here/mariadb/g" wp-config-sample.php
 
 mv wp-config-sample.php wp-config.php
 
