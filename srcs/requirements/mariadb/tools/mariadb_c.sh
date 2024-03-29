@@ -1,20 +1,21 @@
 #!/bin/sh
 
-MYSQL_DB_NAME="mariadb"
-MYSQL_ROOT_PSW="vlplk"
-MYSQL_USER="vlad"
-MYSQL_PSW="vld"
+set -x
 
-echo "FLUSH PRIVILEGES;" | mariadbd --bootstrap --user=root
-echo "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DB_NAME}\`;" | mariadbd --bootstrap --user=root
-echo "CREATE USER IF NOT EXISTS \`${MYSQL_USER}\`@'localhost' IDENTIFIED BY '${MYSQL_PSW}';" | mariadbd --bootstrap --user=root
-echo "GRANT ALL PRIVILEGES ON \`${MYSQL_DB_NAME}\`.* TO \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PSW}';" | mariadbd --bootstrap --user=root
-echo "ALTER USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PSW}';" | mariadbd --bootstrap --user=root
+sed -i 's/# port = 3306/port = 3306/' /etc/mysql/mariadb.cnf
+sed -i 's/127.0.0.1/0.0.0.0/'         /etc/mysql/mariadb.conf.d/50-server.cnf
 
-kill %1
+service mariadb start
 
-mariadbd --bootstrap --user=root & 
-sleep 3
+mysqladmin -u root password "$MYSQL_ROOT_PSW"
+mariadb -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME;"
+mariadb -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PSW';"
+mariadb -e "GRANT ALL PRIVILEGES ON $MYSQL_DB_NAME.* TO '$MYSQL_USER'@'%';"
+mariadb -e "FLUSH PRIVILEGES;"
+
+service mariadb stop
+
+exec "$@"
 ##service mariadb start
 ##
 ##touch db.sql

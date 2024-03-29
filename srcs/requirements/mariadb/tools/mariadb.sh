@@ -1,10 +1,5 @@
 #!/bin/sh
 
-MYSQL_DB_NAME="mariadb"
-MYSQL_ROOT_PSW="vlplk"
-MYSQL_USER="vlad"
-MYSQL_PSW="vld"
-
 service mariadb start
 
 touch db.sql

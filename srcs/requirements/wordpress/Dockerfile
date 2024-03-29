@@ -8,6 +8,7 @@ ARG WP_USER_PSW
 ARG MYSQL_DB_NAME
 ARG MYSQL_USER
 ARG MYSQL_ROOT_PSW
+ARG MYSQL_PSW
 
 RUN apt update -y && apt upgrade -y
 RUN apt install php-fpm -y
