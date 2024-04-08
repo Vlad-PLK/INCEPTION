@@ -16,7 +16,7 @@ clean:
 fclean: clean
 	docker-compose down
 	docker system prune -a -f
-	sudo rm -rf /home/vpolojie/data/*
+	sudo rm -rf /home/vpolojie/data
 
 re:	fclean all
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 10
+sleep 1000
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
@@ -11,7 +11,6 @@ mkdir /var/www
 mkdir /var/www/html
 mkdir /var/www/html/wordpress
 chmod -R 775 /var/www/html/wordpress
-chmod -R www-data /var/www/html/wordpress
 
 cd /var/www/html/wordpress
 
@@ -29,8 +28,7 @@ wp core install --allow-root \
         --title=inception \
         --admin_user=$WP_ADMIN \
         --admin_password=$WP_ADMIN_PSW \
-        --admin_email=inception.42.fr \
-        --skip-email \
+        --admin_email=email@emailservice.org \
         --path=/var/www/html/wordpress
 wp user create \
     $WP_USER \
