@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sleep 1000
-
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
 chmod +x wp-cli.phar
@@ -35,6 +33,6 @@ wp user create \
     --user_pass=$WP_USER_PSW \
     --role=author \
     --allow-root \
-    --path=/var/www/html/wordpress \
+    --path=/var/www/html/wordpress
 
 mkdir /run/php
