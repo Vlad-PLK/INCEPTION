@@ -30,11 +30,8 @@ wp core install --allow-root \
         --admin_password=$WP_ADMIN_PSW \
         --admin_email=email@emailservice.org \
         --path=/var/www/html/wordpress
-wp user create \
-    $WP_USER \
-    --user_pass=$WP_USER_PSW \
-    --role=author \
-    --allow-root \
-    --path=/var/www/html/wordpress
+
+wp user create $WP_USER email@email.org --role=author --user_pass=$WP_USER_PSW --allow-root
 
 mkdir /run/php
+/usr/sbin/php-fpm7.4 -F

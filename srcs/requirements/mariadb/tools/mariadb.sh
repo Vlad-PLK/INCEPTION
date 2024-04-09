@@ -14,3 +14,4 @@ EOF
 mariadb < db.sql
 
 mariadb-admin -u root -p${MYSQL_ROOT_PSW} shutdown
+mariadbd -u ${MYSQL_USER}

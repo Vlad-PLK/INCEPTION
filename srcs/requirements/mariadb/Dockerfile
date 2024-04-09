@@ -15,5 +15,4 @@ COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY tools/mariadb.sh /
 
 RUN chmod +x mariadb.sh
-RUN ./mariadb.sh
-CMD ["mariadbd"]
+CMD ["./mariadb.sh"]
