@@ -8,10 +8,10 @@ ${NAME}:
 	chmod -f 777 /home/vpolojie/data/
 	@printf "\n"
 	@printf "Building up your containers network INCEPTION !\n"
-	docker-compose up --build
+	docker-compose up --build 
 
 clean:
-	docker-compose stop
+	docker-compose stop 
 
 fclean: clean
 	docker-compose down
