@@ -1,7 +1,7 @@
 #!/bin/sh
 
 sleep 10
-if [-f "/var/www/html/wordpress/wp-config.php"]; then
+if [ -f "/var/www/html/wordpress/wp-config.php" ]; then
         echo  "wordpress already installed !"
 else
         curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
