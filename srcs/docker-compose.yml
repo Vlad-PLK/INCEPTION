@@ -36,11 +36,6 @@ services:
     container_name: mariadb
     build: 
       context: ./requirements/mariadb/.
-      args:
-        - MYSQL_DB_NAME=${MYSQL_DB_NAME}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_ROOT_PSW=${MYSQL_ROOT_PSW}
-        - MYSQL_PSW=${MYSQL_PSW}
     networks:
       - inception
     expose:
@@ -57,16 +52,6 @@ services:
       - mariadb
     build: 
       context: ./requirements/wordpress/.
-      args:
-        - DOMAIN_NAME=${DOMAIN_NAME}
-        - WP_ADMIN=${WP_ADMIN}
-        - WP_ADMIN_PSW=${WP_ADMIN_PSW}
-        - WP_USER=${WP_USER}
-        - WP_USER_PSW=${WP_USER_PSW}
-        - MYSQL_DB_NAME=${MYSQL_DB_NAME}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_ROOT_PSW=${MYSQL_ROOT_PSW}
-        - MYSQL_PSW=${MYSQL_PSW}
     networks:
       - inception
     env_file:

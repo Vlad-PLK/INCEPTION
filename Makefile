@@ -8,13 +8,16 @@ ${NAME}:
 	chmod -f 777 /home/vpolojie/data/
 	@printf "\n"
 	@printf "Building up your containers network INCEPTION !\n"
-	docker-compose up --build 
+	docker-compose -f ./srcs/docker-compose.yml up --build
+
+start:
+	docker-compose -f ./srcs/docker-compose.yml start
 
 clean:
-	docker-compose stop 
+	docker-compose -f ./srcs/docker-compose.yml stop
 
 fclean: clean
-	docker-compose down
+	docker-compose -f ./srcs/docker-compose.yml down
 	docker system prune -a -f
 	sudo rm -rf /home/vpolojie/data
 
